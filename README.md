@@ -4,5 +4,5 @@ This device is designed to monitor and detect air quality at regular intervals, 
 Originally designed for: Young Energy Europe AHK Slowakei 
 Link: https://slowakei.ahk.de/de
 
-# Licence
+# License
  - Under GPL-3.0 license
