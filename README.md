@@ -6,3 +6,7 @@ Link: https://slowakei.ahk.de/de
 
 # License
  - Under GPL-3.0 license
+
+
+# Use in action
+![IMG_20241022_183519](https://github.com/user-attachments/assets/5b8b0609-6072-4d1a-b53f-462a90387fc2)
