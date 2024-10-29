@@ -293,8 +293,8 @@ timer = Timer(-1)
 while True:
     start = getTimeSeconds(rtc)
     
-    if uptime_run >= 30:
-        uptime_run = uptime_run % 30
+    if uptime_run >= 60:
+        uptime_run = uptime_run % 60
         startTick = ticks_ms()
         gasAlogorithm()  
             
