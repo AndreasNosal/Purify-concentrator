@@ -2,7 +2,7 @@
 # This code was made by: Filip Greguš, Andreas Nosál
 #
 # Project for: Young Energy Europe AHK Slowakei
-# Date: 19 october 2024
+# Date: 2 november 2024
 #
 # This code is under: The GNU General Public License v3.0
 
@@ -55,7 +55,7 @@ move(pir)
 
 # Lithium battery voltage parameters
 MAX_BATTERY_VOLTAGE = 4.1
-MIN_BATTERY_VOLTAGE = 2.5
+MIN_BATTERY_VOLTAGE = 3.15
 VOLTAGE_DIVIDER_RATIO = 2
 
 freq(80000000);
@@ -141,8 +141,11 @@ measureCount, min_gas, max_gas, last_logged_time, uptime_run, gas, iaq = load_fr
 
 uptime_run += getTimeSeconds(rtc) - uptime_run
 
-if not displayOn and uptime_run < 30:
+if not displayOn and uptime_run < 120:
     deepsleep(2500)
+
+if get_battery_percentage(battery_voltage) == 0:
+    deepsleep(60000)
     
 
 temperature = bme.temperature
@@ -276,7 +279,7 @@ def printOnDisplay():
         else:
             display.text("VOC", 0, 0, 1)
             display.text("{:.2f}".format(100 *(iaq / 500))+"%", 0, 25, 1)
-            display.text("{:.1f}".format(round(iaq))+"ppm", 0, 40, 1)
+            display.text("{:.2f}".format(round(iaq))+"ppm", 0, 40, 1)
             display.show()
         
 
@@ -293,8 +296,8 @@ timer = Timer(-1)
 while True:
     start = getTimeSeconds(rtc)
     
-    if uptime_run >= 60:
-        uptime_run = uptime_run % 60
+    if uptime_run >= 120:
+        uptime_run = uptime_run % 120
         startTick = ticks_ms()
         gasAlogorithm()  
             
